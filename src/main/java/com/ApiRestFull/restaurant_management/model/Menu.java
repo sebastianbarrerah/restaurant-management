@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
@@ -30,8 +32,13 @@ public class Menu {
     private Restaurant restaurant;
 
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
-    private List<Dish> dishes = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "menu_dish",
+            joinColumns = @JoinColumn(name = "menu_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id")
+    )
+    private List<Dish> dishes;
 
     public Menu() {}
 

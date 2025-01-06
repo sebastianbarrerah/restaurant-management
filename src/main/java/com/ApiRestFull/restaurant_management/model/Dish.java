@@ -5,10 +5,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 
 @Entity
@@ -27,8 +28,16 @@ public class Dish {
     private Boolean isPopular = false;
 
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id" )
-    private Menu menu;
+    @ManyToMany(mappedBy = "dishes")
+    private List<Menu> menus;
+
+    public Dish() {}
+
+    public Dish(String name, String description, Integer price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.isPopular = false;
+    }
 
 }
