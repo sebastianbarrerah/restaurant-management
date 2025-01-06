@@ -6,10 +6,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -22,13 +25,15 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+    @Email
+    @NotNull(message = "El email no puede ser nulo")
     private String email;
     private Integer phone;
     private String address;
     private Boolean isFrecuent;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<OrdersRequest> orders = new ArrayList<>();
+    private List<OrderReques> orders = new ArrayList<>();
 
     public Users() {}
 

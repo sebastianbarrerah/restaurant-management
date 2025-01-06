@@ -27,18 +27,18 @@ public class Menu {
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id")
-    private Restaurant restaurante;
+    private Restaurant restaurant;
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Dish> dishes = new ArrayList<>();
 
     public Menu() {}
 
-    public Menu(Long id, String name, String description, Restaurant restaurante) {
+    public Menu(Long id, String name, String description, Restaurant restaurant) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.restaurante = restaurante;
+        this.restaurant = restaurant;
     }
 
 }

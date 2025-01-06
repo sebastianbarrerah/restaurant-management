@@ -1,5 +1,6 @@
 package com.ApiRestFull.restaurant_management.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -22,7 +23,10 @@ public class Dish {
     private String name;
     private String description;
     private Integer price;
-    private Boolean isPopular;
+
+    @Column(nullable = false)
+    private Boolean isPopular = false;
+
 
     @ManyToOne
     @JoinColumn(name = "menu_id")
