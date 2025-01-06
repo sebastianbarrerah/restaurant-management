@@ -1,6 +1,5 @@
 package com.ApiRestFull.restaurant_management.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,11 +8,9 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -42,10 +39,11 @@ public class Menu {
 
     public Menu() {}
 
-    public Menu( String name, String description, Restaurant restaurant) {
+    public Menu( String name, String description, Restaurant restaurant, List<Dish> dishes) {
         this.name = name;
         this.description = description;
         this.restaurant = restaurant;
+        this.dishes = dishes;
     }
 
 }
