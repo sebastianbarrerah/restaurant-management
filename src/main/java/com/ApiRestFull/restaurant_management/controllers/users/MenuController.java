@@ -2,8 +2,10 @@ package com.ApiRestFull.restaurant_management.controllers.users;
 
 import com.ApiRestFull.restaurant_management.model.Menu;
 import com.ApiRestFull.restaurant_management.services.MenuService;
+import com.ApiRestFull.restaurant_management.dto.MenuDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,8 +38,8 @@ public class MenuController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addMenu(@RequestBody Menu menu){
-        service.addMenu(menu);
+    public ResponseEntity<String> addMenu(@RequestBody MenuDto menuDto){
+        service.addMenu(menuDto);
         return ResponseEntity.ok("Menu agreg|ado con exito");
     }
 
@@ -46,7 +48,7 @@ public class MenuController {
         return ResponseEntity.ok(service.editMenu(id, menu));
     }
 
-    @PostMapping("/borrar/{id}")
+    @DeleteMapping("/borrar/{id}")
     public ResponseEntity<String> removeMenu(@PathVariable Long id){
         service.removeMenu(id);
         return ResponseEntity.ok("Menu eliminado con exito");

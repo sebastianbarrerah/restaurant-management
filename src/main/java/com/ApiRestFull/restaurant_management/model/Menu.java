@@ -39,11 +39,11 @@ public class Menu {
 
     public Menu() {}
 
-    public Menu( String name, String description, Restaurant restaurant, List<Dish> dishes) {
+    public Menu( String name, String description, List<Dish> dishes, Restaurant restaurant) {
         this.name = name;
         this.description = description;
-        this.restaurant = restaurant;
         this.dishes = dishes;
+        this.restaurant = restaurant;
     }
 
 }
