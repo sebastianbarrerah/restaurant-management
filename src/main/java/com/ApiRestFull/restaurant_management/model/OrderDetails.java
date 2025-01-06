@@ -17,20 +17,20 @@ public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Integer quantity;
-    @OneToOne(mappedBy = "orderDetails")
-    private OrderReques orderRequest;
+
+    @ManyToOne
+    private OrderReques orderReques;
+
     @ManyToOne
     @JoinColumn(name = "dish_id")
     private Dish dish;
 
     public OrderDetails() {}
 
-    public OrderDetails(Long id, Integer quantity, OrderReques orderRequest) {
-        this.id = id;
+    public OrderDetails( Integer quantity, OrderReques orderRequest) {
         this.quantity = quantity;
-        this.orderRequest = orderRequest;
+        this.orderReques = orderRequest;
 
     }
 }

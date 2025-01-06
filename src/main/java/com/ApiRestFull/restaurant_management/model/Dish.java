@@ -9,7 +9,6 @@ import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.awt.*;
 
 @Entity
 @Getter
@@ -25,7 +24,7 @@ public class Dish {
     private Boolean isPopular;
 
     @ManyToOne
-    @JoinColumn(name = "menu_id")
+    @JoinColumn(name = "menu_id" )
     private Menu menu;
 
 }

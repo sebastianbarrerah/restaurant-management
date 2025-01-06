@@ -33,5 +33,12 @@ import java.util.List;
 
         public Restaurant() {}
 
-
+        public Restaurant( String name, String description, String address, Integer phone, String city) {
+            this.name = name;
+            this.description = description;
+            this.address = address;
+            this.phone = phone;
+            this.city = city;
         }
+
+}

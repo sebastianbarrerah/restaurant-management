@@ -1,6 +1,8 @@
 package com.ApiRestFull.restaurant_management.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,7 +21,9 @@ public class Reservation {
     private Long id;
     private String date;
     private Integer total;
-    private Integer ammountUsers;
+    private Integer amountUsers;
+
+    @Enumerated(EnumType.STRING)
     private StatusReservation status;
 
     @ManyToOne
@@ -32,11 +36,11 @@ public class Reservation {
 
     public Reservation() {}
 
-    public Reservation(Long id, String date, Integer total, Integer ammountUsers, StatusReservation status, Users client, Restaurant restaurant) {
+    public Reservation(Long id, String date, Integer total, Integer amountUsers, StatusReservation status, Users client, Restaurant restaurant) {
         this.id = id;
         this.date = date;
         this.total = total;
-        this.ammountUsers = ammountUsers;
+        this.amountUsers = amountUsers;
         this.status = status;
         this.client = client;
         this.restaurant = restaurant;
