@@ -1,5 +1,7 @@
 package com.ApiRestFull.restaurant_management.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,12 +28,16 @@ import java.util.List;
         private String city;
 
         @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
+        @JsonManagedReference
         private List<Menu> menus = new ArrayList<>();
 
-        @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL)
-        private List<Reservation> reservas = new ArrayList<>();
+    @OneToMany(mappedBy = "restaurant")
+    @JsonBackReference
+    private List<Reservation> reservations;
 
-        public Restaurant() {}
+
+
+    public Restaurant() {}
 
         public Restaurant( String name, String description, String address, Integer phone, String city) {
             this.name = name;
