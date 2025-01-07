@@ -38,7 +38,6 @@ public class RestaurantService {
             restaurante.setAddress(restaurant.getAddress());
             restaurante.setPhone(restaurant.getPhone());
             restaurante.setCity(restaurant.getCity());
-            restaurante.setReservas(restaurant.getReservas());
             restaurante.setMenus(restaurant.getMenus());
             return  repository.save(restaurante);
         }).orElse(null);

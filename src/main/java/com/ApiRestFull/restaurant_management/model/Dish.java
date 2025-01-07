@@ -28,8 +28,6 @@ public class Dish {
     private Boolean isPopular = false;
 
 
-    @ManyToMany(mappedBy = "dishes")
-    private List<Menu> menus;
 
     public Dish() {}
 

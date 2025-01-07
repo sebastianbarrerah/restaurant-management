@@ -1,5 +1,6 @@
 package com.ApiRestFull.restaurant_management.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,16 +30,18 @@ public class OrderReques {
     private Users user;
 
     @OneToMany(mappedBy = "orderReques", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<OrderDetails> orderDetails = new ArrayList<>();
 
     public OrderReques() {}
 
-    public OrderReques(Long id, String date, Integer total, Users user) {
+    public OrderReques(Long id, String date, Users user) {
         this.id = id;
         this.date = date;
-        this.total = total;
         this.user = user;
     }
 
-
+    public Integer setTotal(){
+        return getOrderDetails().stream().mapToInt(OrderDetails::getQuantity).sum();
+    }
 }

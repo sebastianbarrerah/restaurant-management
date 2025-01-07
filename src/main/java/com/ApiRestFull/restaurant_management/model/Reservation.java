@@ -1,5 +1,6 @@
 package com.ApiRestFull.restaurant_management.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -26,23 +27,26 @@ public class Reservation {
     @Enumerated(EnumType.STRING)
     private StatusReservation status;
 
+
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Users client;
+    @JoinColumn(name = "user_id")
+    @JsonManagedReference // Serializa la relación cliente -> reservation
+    private Users user;
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id")
+    @JsonManagedReference // Serializa la relación restaurante -> reservation
     private Restaurant restaurant;
+
+
 
     public Reservation() {}
 
-    public Reservation(Long id, String date, Integer total, Integer amountUsers, StatusReservation status, Users client, Restaurant restaurant) {
-        this.id = id;
+    public Reservation(String date,  Integer amountUsers, Users user, Restaurant restaurant) {
         this.date = date;
-        this.total = total;
         this.amountUsers = amountUsers;
-        this.status = status;
-        this.client = client;
+        this.status = StatusReservation.PENDING;
+        this.user = user;
         this.restaurant = restaurant;
     }
 
