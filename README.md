@@ -58,6 +58,8 @@ spring.jpa.hibernate.ddl-auto=update
 ./gradlew bootRun
 ```
 
+## Diagrama 
+![DIAGRAMA_RESTAURANT](https://github.com/user-attachments/assets/6a321c8c-caae-489b-91a4-b233899a9d82)
 
 
 
