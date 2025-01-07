@@ -7,6 +7,7 @@ import com.ApiRestFull.restaurant_management.model.Restaurant;
 import com.ApiRestFull.restaurant_management.repositories.DishRepository;
 import com.ApiRestFull.restaurant_management.repositories.MenuRepository;
 import com.ApiRestFull.restaurant_management.repositories.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class MenuService {
     private final RestaurantRepository restaurantRepository;
     private final DishRepository dishRepository;
 
+    @Autowired
     public MenuService(MenuRepository menuRepository, RestaurantRepository restaurantRepository, DishRepository dishRepository) {
         this.menuRepository = menuRepository;
         this.restaurantRepository = restaurantRepository;
@@ -25,21 +27,17 @@ public class MenuService {
     }
 
     public void addMenu(MenuDto menuDTO) {
-        // Busca el restaurante por ID
         Restaurant restaurant = restaurantRepository.findById(menuDTO.getRestaurantId())
                 .orElseThrow(() -> new IllegalArgumentException("Restaurante no encontrado"));
 
-        // Busca los platos por sus IDs
         List<Dish> dishes = dishRepository.findAllById(menuDTO.getDishIds());
 
-        // Crea un nuevo objeto Menu
         Menu menu = new Menu();
         menu.setName(menuDTO.getName());
         menu.setDescription(menuDTO.getDescription());
         menu.setRestaurant(restaurant);
         menu.setDishes(dishes);
 
-        // Guarda el menú en la base de datos
         menuRepository.save(menu);
     }
 

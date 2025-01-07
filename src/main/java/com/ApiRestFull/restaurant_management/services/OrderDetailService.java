@@ -2,6 +2,7 @@ package com.ApiRestFull.restaurant_management.services;
 
 import com.ApiRestFull.restaurant_management.model.OrderDetails;
 import com.ApiRestFull.restaurant_management.repositories.OrderDetailRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class OrderDetailService {
 
     private final OrderDetailRepository orderDetailRepository;
 
+    @Autowired
     public OrderDetailService(OrderDetailRepository orderDetailRepository) {
         this.orderDetailRepository = orderDetailRepository;
     }

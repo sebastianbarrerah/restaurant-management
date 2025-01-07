@@ -44,4 +44,6 @@ public class OrderReques {
     public Integer setTotal(){
         return getOrderDetails().stream().mapToInt(OrderDetails::getQuantity).sum();
     }
+
+
 }

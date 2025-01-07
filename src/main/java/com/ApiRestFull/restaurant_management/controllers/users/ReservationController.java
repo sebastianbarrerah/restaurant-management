@@ -2,6 +2,7 @@ package com.ApiRestFull.restaurant_management.controllers.users;
 
 import com.ApiRestFull.restaurant_management.model.Reservation;
 import com.ApiRestFull.restaurant_management.services.ReservationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ public class ReservationController {
 
     private final ReservationService service;
 
+    @Autowired
     public ReservationController(ReservationService service) {
         this.service = service;
     }

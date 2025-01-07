@@ -2,6 +2,7 @@ package com.ApiRestFull.restaurant_management.controllers.users;
 
 import com.ApiRestFull.restaurant_management.model.OrderReques;
 import com.ApiRestFull.restaurant_management.services.OrderRequesService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ public class OrderRequesController {
 
     private final OrderRequesService service;
 
+    @Autowired
     public OrderRequesController(OrderRequesService service) {
         this.service = service;
     }

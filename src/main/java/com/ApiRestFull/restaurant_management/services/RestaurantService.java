@@ -2,6 +2,7 @@ package com.ApiRestFull.restaurant_management.services;
 
 import com.ApiRestFull.restaurant_management.model.Restaurant;
 import com.ApiRestFull.restaurant_management.repositories.RestaurantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public class RestaurantService {
 
     private final RestaurantRepository repository;
 
+    @Autowired
     public RestaurantService(RestaurantRepository repository) {
         this.repository = repository;
     }

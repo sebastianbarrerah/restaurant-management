@@ -2,7 +2,9 @@ package com.ApiRestFull.restaurant_management.services;
 
 
 import com.ApiRestFull.restaurant_management.model.OrderReques;
+import com.ApiRestFull.restaurant_management.repositories.OrderDetailRepository;
 import com.ApiRestFull.restaurant_management.repositories.OrderRequesRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +13,13 @@ import java.util.List;
 public class OrderRequesService {
 
     private final OrderRequesRepository orderRequestRepository;
+    private final OrderDetailRepository orderDetailRepository;
 
-    public OrderRequesService(OrderRequesRepository orderRequestRepository) {
+
+    @Autowired
+    public OrderRequesService(OrderRequesRepository orderRequestRepository, OrderDetailRepository orderDetailRepository) {
         this.orderRequestRepository = orderRequestRepository;
+        this.orderDetailRepository = orderDetailRepository;
     }
 
     public OrderReques addOrder(OrderReques orderRequest) {

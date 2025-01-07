@@ -2,6 +2,7 @@ package com.ApiRestFull.restaurant_management.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,7 +28,9 @@ public class Users {
     private String email;
     private Integer phone;
     private String address;
-    private Boolean isFrequent;
+
+    @Column(nullable = false)
+    private Boolean isFrequent = false;
 
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
