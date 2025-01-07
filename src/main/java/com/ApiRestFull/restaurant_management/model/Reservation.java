@@ -30,12 +30,12 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonManagedReference // Serializa la relación cliente -> reservation
+    @JsonManagedReference
     private Users user;
 
     @ManyToOne
     @JoinColumn(name = "restaurante_id")
-    @JsonManagedReference // Serializa la relación restaurante -> reservation
+    @JsonManagedReference
     private Restaurant restaurant;
 
 

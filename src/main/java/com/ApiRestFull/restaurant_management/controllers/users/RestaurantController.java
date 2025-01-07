@@ -1,5 +1,7 @@
 package com.ApiRestFull.restaurant_management.controllers.users;
 
+import com.ApiRestFull.restaurant_management.dto.RestaurantRequestDto;
+import com.ApiRestFull.restaurant_management.dto.RestaurantResponseDto;
 import com.ApiRestFull.restaurant_management.model.Restaurant;
 import com.ApiRestFull.restaurant_management.services.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import utils.RestaurantDtoConverter;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/restaurant")
@@ -27,29 +31,37 @@ public class RestaurantController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<Restaurant>> findAllRestaurants(){
-        return ResponseEntity.ok(service.ListRestaurants());
+    public ResponseEntity<List<RestaurantResponseDto>> findAllRestaurants(){
+        List<Restaurant> restaurants = service.ListRestaurants();
+        List<RestaurantResponseDto> response = restaurants.stream()
+                .map(RestaurantDtoConverter::convertToResponseDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(response);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Restaurant> findRestaurantById(@PathVariable Long id){
-        return ResponseEntity.ok(service.findRestaurantById(id));
+    public ResponseEntity<RestaurantResponseDto> findRestaurantById(@PathVariable Long id){
+        Restaurant restaurant = service.findRestaurantById(id);
+        return ResponseEntity.ok(RestaurantDtoConverter.convertToResponseDto(restaurant));
     }
 
     @PostMapping("/add")
-    public ResponseEntity<String> addRestaurant(@RequestBody Restaurant restaurant){
+    public ResponseEntity<String> addRestaurant(@RequestBody RestaurantRequestDto restaurantRequestDto){
+        Restaurant restaurant = RestaurantDtoConverter.convertToEntity(restaurantRequestDto);
         service.addRestaurant(restaurant);
-        return ResponseEntity.ok("Restaurante agregado con exito");
+        return ResponseEntity.ok("Restaurante agregado con éxito.");
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<Restaurant> editRestaurant(@PathVariable Long id, @RequestBody Restaurant restaurant){
-        return ResponseEntity.ok(service.editRestaurant(id, restaurant));
+    public ResponseEntity<RestaurantResponseDto> editRestaurant(@PathVariable Long id, @RequestBody RestaurantRequestDto restaurantRequestDto){
+        Restaurant restaurant = RestaurantDtoConverter.convertToEntity(restaurantRequestDto);
+        Restaurant updatedRestaurant = service.editRestaurant(id, restaurant);
+        return ResponseEntity.ok(RestaurantDtoConverter.convertToResponseDto(updatedRestaurant));
     }
 
     @DeleteMapping("/borrar/{id}")
     public ResponseEntity<String> removeRestaurant(@PathVariable Long id){
         service.removeRestaurant(id);
-        return ResponseEntity.ok("Restaurante eliminado con exito");
+        return ResponseEntity.ok("Restaurante eliminado con éxito.");
     }
 }

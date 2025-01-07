@@ -30,6 +30,6 @@ public class OrderRequesController {
     @DeleteMapping("borrar/{id}")
     public ResponseEntity<String> deleteOrder(@PathVariable Long id) {
         service.deleteOrder(id);
-        return ResponseEntity.ok("OrderRequest eliminado con éxito");
+        return ResponseEntity.ok("Orden eliminada con éxito");
     }
 }
