@@ -47,4 +47,13 @@ import java.util.List;
             this.city = city;
         }
 
+    public Restaurant( Long id, String name, String description, String address, Integer phone, String city) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.phone = phone;
+        this.city = city;
+    }
+
 }
