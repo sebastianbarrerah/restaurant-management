@@ -1,7 +1,6 @@
 package com.ApiRestFull.restaurant_management.model;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,7 +39,6 @@ public class Menu {
     @JoinColumn(name = "restaurant_id")
     @JsonIgnore
     private Restaurant restaurant;
-
 
     public Menu() {}
 

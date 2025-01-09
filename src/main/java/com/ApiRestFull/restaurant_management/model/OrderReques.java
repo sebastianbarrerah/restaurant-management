@@ -33,7 +33,8 @@ public class OrderReques {
     @JsonManagedReference
     private List<OrderDetails> orderDetails = new ArrayList<>();
 
-    public OrderReques() {}
+    public OrderReques() {
+    }
 
     public OrderReques(Long id, String date, Users user) {
         this.id = id;
@@ -41,9 +42,7 @@ public class OrderReques {
         this.user = user;
     }
 
-    public Integer setTotal(){
-        return getOrderDetails().stream().mapToInt(OrderDetails::getQuantity).sum();
-    }
-
-
 }
+
+
+

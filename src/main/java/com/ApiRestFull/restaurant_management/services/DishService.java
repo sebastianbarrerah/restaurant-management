@@ -39,7 +39,6 @@ public class DishService {
             plato.setDescription(dish.getDescription());
             plato.setName(dish.getName());
             plato.setPrice(dish.getPrice());
-            plato.setIsPopular(dish.getIsPopular());
             return dishRepository.save(plato);
         }).orElse(null);
     }

@@ -12,7 +12,7 @@ public class OrderRequesDtoConverter {
         OrderRequesResponseDto dto = new OrderRequesResponseDto();
         dto.setId(orderReques.getId());
         dto.setDate(orderReques.getDate());
-        dto.setTotal(orderReques.setTotal());
+        dto.setTotal(orderReques.getTotal());
         dto.setUserId(orderReques.getUser().getId());
         return dto;
     }

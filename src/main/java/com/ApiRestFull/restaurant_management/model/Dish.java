@@ -5,11 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 
 @Entity
@@ -31,11 +28,18 @@ public class Dish {
 
     public Dish() {}
 
+
     public Dish(String name, String description, Integer price) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.isPopular = false;
     }
+
+
+    public boolean getPopular() {
+        return this.getIsPopular();
+    }
+
 
 }
